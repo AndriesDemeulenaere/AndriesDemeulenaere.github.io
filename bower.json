@@ -1,0 +1,22 @@
+{
+  "name": "andries-starterkit",
+  "authors": [
+    "Andries"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.2.3",
+    "normalize-css": "~4.0.0"
+  }
+}
