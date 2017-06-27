@@ -1,6 +1,6 @@
 var constants = {
 	token_youtube: "AIzaSyBPytlCrUXqVDFrFXDM3hvhLAK_AdXw6-I",
-	token_soundcloud: "56958852ec1794589c3b2efe2c4d3f78",
+	token_soundcloud: "",
 	base_url_youtube: "https://www.googleapis.com/youtube/v3",
 	base_url_soundcloud: "",
 }
@@ -24,6 +24,7 @@ requests.youtube = function() {
 		dataType: 'jsonp',
 		success: function(data) {
 			console.log('data', data);
+			fillList(data.items);
 		},
 		error: function() {
 			alert('Something went wrong');
@@ -31,9 +32,21 @@ requests.youtube = function() {
 	})
 }
 
-requests.soundcloud = function() {
-	
+
+function fillList(list) {
+	$.each(list, function(index, value) {
+		$('.js-playlist').append('<li class="playlist-item"><a class="js-playlist-item" href="#" data-id="' + value.id.videoId + '">' + value.snippet.title + '</a></li>');
+	});
 }
+
+
+$(document).on('click', '.js-playlist-item', function() {
+	var videoid = $(this).attr("data-id");
+	$(".js-player-youtube iframe").remove();
+	$('<iframe width="420" height="315" frameborder="0" allowfullscreen></iframe>')
+    .attr("src", "http://www.youtube.com/embed/" + videoid)
+    .appendTo(".js-player-youtube");
+});
 
 
 
